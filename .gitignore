@@ -4,4 +4,4 @@
 logs
 *.log
 
-server/db-config.js
+processeddataset/
