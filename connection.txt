@@ -1,0 +1,8 @@
+Let me tell you how to connect with our RDS database
+
+{
+ host: cis550.cbuhabx5xhu3.us-east-1.rds.amazonaws.com,
+ port: 3306,
+ username: admin,
+ password: cis550project
+}
