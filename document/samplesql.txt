@@ -3,7 +3,7 @@
  */
 SELECT name FROM GAME G
 JOIN DESCRIPTION D ON G.app_id = D.app_id
-WHERE D.genre like 'Action' AND D.release_dt > DATE("2000-00-010")
+WHERE D.genre like 'Action' AND D.release_dt > DATE("2000-00-00")
 
 /* query 2
    search the description of the game with name "Day of Defeat"
@@ -110,19 +110,20 @@ WHERE EXISTS
 
 WITH temp(name) AS(
 SELECT name FROM GAME g JOIN OWN_GAME o ON g.app_id = o.app_id
-JOIN USER u ON g.app_id = u.app_id
-WHERE location <> ‘Beijing’
+JOIN USER u ON o.user_id = u.user_id
+WHERE location <> "Beijing"
 )
 SELECT name, num_review
 FROM
 (
 SELECT name, COUNT(DISTINCT review_id) AS num_review
 FROM GAME g LEFT JOIN REVIEW r ON g.app_id = r.app_id
-LEFT JOIN DESCRIPTION d ON g.app_id = d.app_id
-WHERE release_dt >= DATE(“1990-01-01”)
-GROUP BY name)T
-WHERE name IN (
-SELECT * FROM temp
+LEFT JOIN DESCRIPTION d ON g.app_id= d.app_id
+WHERE year(release_dt) >= year(1990)
+GROUP BY name) t
+WHERE name NOT IN
+(
+    SELECT * FROM temp
 )
 
 /*
