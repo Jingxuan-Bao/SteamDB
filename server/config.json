@@ -1,0 +1,9 @@
+{
+    "rds_host": "cis550.cbuhabx5xhu3.us-east-1.rds.amazonaws.com",
+    "rds_port": "3306",
+    "rds_user": "admin",
+    "rds_password" : "cis550project",
+    "rds_db": "SteamDB",
+    "server_host": "127.0.0.1",
+    "server_port":"3000"
+}
