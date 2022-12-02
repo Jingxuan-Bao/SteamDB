@@ -298,15 +298,16 @@ async function getGameByPositiveRatings(req, res) {
 
 // get top 50 games by genre, language, release_dt and sort by positive_ratings
 async function getGameByGenreLanguageReleaseDatePositiveRatings(req, res) {
-    const genre = req.params.genre;
-    const language = req.params.language;
-    const date = req.params.date;
-    if(genre && language && date) {
+    const genre = req.query.genre;
+    const lan = req.query.lan;
+    const dt = req.query.dt;
+    console.log(genre, lan, dt)
+    if(genre && lan && dt) {
         var query = `
         With game_description AS(
             SELECT *
             FROM DESCRIPTION
-            WHERE genre like '%${genre}%' AND language = '${language}' AND release_dt > '${date}'
+            WHERE genre like '%${genre}%' AND language = '${lan}' AND release_dt > '${dt}'
             ORDER BY positive_ratings DESC
             LIMIT 50),
         game_picture AS(
@@ -339,7 +340,7 @@ async function getGameByGenreLanguageReleaseDatePositiveRatings(req, res) {
         })
     }
     else {
-        res.json({status: "no such genre, language, or date"});
+        res.json({status: "no valid input"});
     }
 }
 
@@ -353,12 +354,11 @@ async function getGameByGenreLanguageReleaseDatePositiveRatings(req, res) {
 //export module
 module.exports = (app) => {
     app.get('/mainpage', mainpage);
-    app.get('/mainpage/:gamename', getGameByname);
-    app.get('/mainpage/:date', getGameByReleaseDate);
-    app.get('/mainpage/:positive_ratings', getGameByPositiveRatings);
-    app.get('/mainpage/:language', getGameByLanguage);
-    app.get('/mainpage/:genre', getGameByGenre);
-    app.get('/mainpage/:genre&:language&:date', getGameByGenreLanguageReleaseDate);
-    app.get('/mainpage/:genre&:language&:date&:positive_ratings', getGameByGenreLanguageReleaseDatePositiveRatings);
+    app.get('/mainpage/name/:gamename', getGameByname);
+    app.get('/mainpage/date/:date', getGameByReleaseDate);
+    app.get('/mainpage/pos_rating/:positive_ratings', getGameByPositiveRatings);
+    app.get('/mainpage/lan/:language', getGameByLanguage);
+    app.get('/mainpage/genre/:genre', getGameByGenre);
+    app.get('/mainpage/allsort/', getGameByGenreLanguageReleaseDatePositiveRatings);
 
 }
