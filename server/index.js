@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const profile = require('./routes/profile');
+const login = require('./routes/login');
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
@@ -13,3 +14,4 @@ app.get("/", (req, res) => {
 });
 
 profile(app);
+login(app);
