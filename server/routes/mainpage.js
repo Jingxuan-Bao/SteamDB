@@ -340,12 +340,137 @@ async function getGameByGenreLanguageReleaseDatePositiveRatings(req, res) {
         })
     }
     else {
-        res.json({status: "no valid input"});
+        res.json({status: "at least genre is required"});
     }
 }
 
+// get all genre
+async function getAllGenres(req, res) {
+    var query = `
+    SELECT DISTINCT genre
+    FROM DESCRIPTION;
+    `;
+    connection.query(query
+        , function(error, results, fields) {
+        if(error) {
+            console.log(error);
+            res.json({status: error});
+        }
+        else if(results) {
+            console.log(results)
+            for (let i = 0; i < results.length; i++) {
+                results[i].genre = results[i].genre.split(';');
+            }
+            hashset = new Set();
+            for (let i = 0; i < results.length; i++) {
+                for (let j = 0; j < results[i].genre.length; j++) {
+                    hashset.add(results[i].genre[j]);
+                }
+            }
+
+            results = JSON.stringify(Array.from(hashset));
+
+            res.json({
+                status: "success",
+                results: results
+            })
+        }
+    })
+}
 
 
+// sort games by the amount of reviews
+async function getGameByReviewsCount(req, res) {
+    var query = `
+    With game_review_count as(
+        SELECT GAME.app_id, name, count(DISTINCT review_id) as review_count
+        FROM GAME, REVIEW
+        WHERE GAME.app_id = REVIEW.app_id
+        GROUP BY app_id
+        ORDER BY review_count DESC
+        LIMIT 50),
+    game_description AS(
+        SELECT *
+        FROM DESCRIPTION
+        WHERE app_id IN (SELECT app_id FROM game_review_count)),
+    game_picture AS(
+        SELECT app_id, figure, background
+        FROM FIGURE
+        WHERE app_id IN (SELECT app_id FROM game_review_count))
+    SELECT game_review_count.app_id, game_review_count.name, game_review_count.review_count,
+    game_picture.figure, game_picture.background, short_description, release_dt, language,
+    platform, developer, genre, positive_ratings, negative_ratings, price, average_playtime
+    FROM game_review_count, game_picture, game_description
+    WHERE game_review_count.app_id = game_picture.app_id AND game_review_count.app_id = game_description.app_id
+    ORDER BY review_count DESC;
+    `;
+    connection.query(query
+        , function(error, results, fields) {
+        if(error) {
+            console.log(error);
+            res.json({status: error});
+        }
+        else if(results) {
+            res.json({
+                status: "success",
+                results: results
+            })
+        }
+    })
+}
+
+
+// get a game genre, sort by rating and review_count
+async function getGameByGenreRatingReviewCount(req, res) {
+    const genre = req.params.genre;
+    if(genre) {
+        var query = `
+        With game_description AS(
+            SELECT *
+            FROM DESCRIPTION
+            WHERE genre like '%${genre}%'),
+        game_review_count as(
+            SELECT GAME.app_id, name, count(DISTINCT review_id) as review_count
+            FROM GAME, REVIEW
+            WHERE GAME.app_id = REVIEW.app_id AND GAME.app_id IN (SELECT app_id FROM game_description)
+            GROUP BY app_id),
+        top_games AS(
+            SELECT game_description.app_id, name, short_description, release_dt, language,
+            platform, developer, genre, positive_ratings, negative_ratings, price, average_playtime, review_count
+            FROM game_description, game_review_count
+            WHERE game_description.app_id = game_review_count.app_id
+            ORDER BY positive_ratings DESC, review_count DESC
+            LIMIT 50),
+        game_picture AS(
+            SELECT app_id, figure, background
+            FROM FIGURE
+            WHERE app_id IN (SELECT app_id FROM top_games))
+        SELECT top_games.app_id, top_games.name, game_picture.figure, game_picture.background,
+        top_games.short_description, top_games.release_dt, top_games.language, top_games.platform,
+        top_games.developer, top_games.genre, top_games.positive_ratings, top_games.negative_ratings,
+        top_games.price, top_games.average_playtime, top_games.review_count
+        FROM top_games, game_picture
+        WHERE top_games.app_id = game_picture.app_id
+        ORDER BY positive_ratings DESC, review_count DESC;
+        `;
+        connection.query(query
+            , function(error, results, fields) {
+            if(error) {
+                console.log(error);
+                res.json({status: error});
+            }
+            else if(results) {
+                res.json({
+                    status: "success",
+                    results: results
+                })
+            }
+        })
+    }
+    else {
+        res.json({status: "genre is required"});
+    }
+}
 
 
 
@@ -360,5 +485,7 @@ module.exports = (app) => {
     app.get('/mainpage/lan/:language', getGameByLanguage);
     app.get('/mainpage/genre/:genre', getGameByGenre);
     app.get('/mainpage/allsort/', getGameByGenreLanguageReleaseDatePositiveRatings);
-
+    app.get('/allgenres', getAllGenres);
+    app.get('/mainpage/review_count', getGameByReviewsCount);
+    app.get('/mainpage/gsort/:genre', getGameByGenreRatingReviewCount);
 }
