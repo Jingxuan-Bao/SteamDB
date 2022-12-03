@@ -116,6 +116,56 @@ async function gameRecommended(req, res) {
         res.json({status: "no game id"});
     }
 }
+
+async function gameRecommendByUser(req, res) {
+    const userid = req.params.userid;
+    if(userid) {
+        var query = `
+        select distinct OG.app_id,
+                D.genre,
+                D.short_description,
+                D.positive_ratings,
+                D.negative_ratings,
+                F.figure,
+                D.positive_ratings / (D.positive_ratings + D.negative_ratings) as positive_ratings_percentage
+        FROM OWN_GAME OG
+         join DESCRIPTION D on OG.app_id = D.app_id
+         join FIGURE F on F.app_id = OG.app_id
+        where OG.user_id in
+            (select most_matches_users.user_id
+            from (SELECT OG.user_id
+                FROM OWN_GAME OG
+                JOIN (SELECT app_id
+                    FROM OWN_GAME
+                    WHERE user_id = '${userid}') G ON OG.app_id = G.app_id
+             where user_id != '${userid}'
+             group by OG.user_id
+             order by count(1)
+             limit 10) most_matches_users)
+            and OG.app_id not in (SELECT app_id
+                                FROM OWN_GAME
+                                WHERE user_id = '${userid}')
+        order by positive_ratings_percentage Desc
+        limit 10;
+        `
+    ;
+        connection.query(query, function(error, results, fields) {
+            if(error) {
+                console.log(error);
+                res.json({status: error});
+            }
+            else if(results) {
+                res.json({
+                    status: "success",
+                    results: results
+                })
+            }
+        })
+    }
+    else {
+        res.json({status: "no user id"});
+    }
+}
     
 
 
