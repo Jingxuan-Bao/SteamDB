@@ -114,6 +114,7 @@ function gamerecommend(req, res) {
             JOIN DESCRIPTION R ON F.app_id = R.app_id
             JOIN TARGETNAMETYPE T ON F.app_id = T.app_id
             WHERE positive_ratings > 10 * negative_ratings
+            AND F.app_id NOT IN (SELECT * FROM GAMELIST)
             ORDER BY R.positive_ratings DESC
             LIMIT 10
         ),  FRIENDGAMEDES AS (
