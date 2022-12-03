@@ -11,15 +11,15 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-function getdescriptionbyId(req, res) {
-    const appid = req.params.appid;
-    if(appid) {
+function getpassword(req, res) {
+    const userid = req.params.userid;
+    if(userid) {
         var query = `
-           SELECT short_description
-           FROM DESCRIPTION
-           WHERE app_id = '${appid}';        
-          `;
-        connection.query(query, function(error, results, fields) {
+        SELECT password
+        FROM USER
+        WHERE user_id = '${userid}'    
+       `;
+       connection.query(query, function(error, results, fields) {
             if(error) {
                 console.log(error);
                 res.json({status: error});
@@ -33,11 +33,9 @@ function getdescriptionbyId(req, res) {
         })
     }
     else {
-        res.json({status: "no game id"});
+        res.json({status: "no user id"});
     }
 }
-
-//export module
 module.exports = (app) => {
-    app.get('/description/:appid', getdescriptionbyId);
+    app.get('/login/:userid/getpassword', getpassword);
 }
