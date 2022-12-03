@@ -51,13 +51,52 @@ async function getGameByGenre(req, res) {
     }
 }
 
-async function getGameByGenre(req, res) {
+async function getGameReview(req, res) {
     const gameid = req.params.app_id;
     if(gameid) {
         var query = `
         SELECT R.app_name, R.review, R.language, R.recommended
         FROM REVIEW R
         WHERE R.app_id = '${gameid}'
+        `
+    ;
+        connection.query(query, function(error, results, fields) {
+            if(error) {
+                console.log(error);
+                res.json({status: error});
+            }
+            else if(results) {
+                res.json({
+                    status: "success",
+                    results: results
+                })
+            }
+        })
+    }
+    else {
+        res.json({status: "no game id"});
+    }
+}
+
+async function gameRecommended(req, res) {
+    const gameid = req.params.app_id;
+    if(gameid) {
+        var query = `
+        SELECT distinct D.app_id,
+                D.genre,
+                D.short_description,
+                D.positive_ratings,
+                D.negative_ratings,
+                F.figure,
+                D.positive_ratings / (D.positive_ratings + D.negative_ratings) as positive_ratings_percentage
+        FROM DESCRIPTION D
+            join FIGURE F
+            on F.app_id = D.app_id
+        where D.genre like concat('%', (select genre from DESCRIPTION where app_id = '${gameid}'), '%')
+        and D.average_playtime > (select average_playtime from DESCRIPTION where app_id = '${gameid}') - 100
+        and D.average_playtime > (select average_playtime from DESCRIPTION where app_id = '${gameid}') + 100
+        order by positive_ratings_percentage desc
+        limit 10;
         `
     ;
         connection.query(query, function(error, results, fields) {
