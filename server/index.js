@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const description = require('./routes/description');
+const mainpage = require('./routes/mainpage');
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
@@ -13,3 +14,4 @@ app.get("/", (req, res) => {
 });
 
 description(app);
+mainpage(app);
