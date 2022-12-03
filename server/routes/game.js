@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-async function getGameByGenre(req, res) {
+async function getGameInfo(req, res) {
     const gameid = req.params.app_id;
     if(gameid) {
         var query = `
@@ -165,6 +165,13 @@ async function gameRecommendByUser(req, res) {
     else {
         res.json({status: "no user id"});
     }
+}
+
+module.exports = (app) => {
+    app.get('/game/:app_id', getGameInfo);
+    app.get('/game/:userid/userrecommend', gameRecommendByUser);
+    app.get('/game/:app_id/getGameReview', getGameReview);
+    app.get('/game/:app_id/gamerecommend', gameRecommended);
 }
     
 
