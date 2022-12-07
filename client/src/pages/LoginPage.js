@@ -46,6 +46,7 @@ class LoginPage extends React.Component {
 
     render() {
         return (
+            <center>
             <div class="auth-container">
                 <div class="auth-card">
                     <img class="steam-img" src="https://steamstore-a.akamaihd.net/public/shared/images/header/globalheader_logo.png"/>
@@ -57,6 +58,7 @@ class LoginPage extends React.Component {
                     <p className='alert-message'>{this.state.message}</p>
                 </div>
             </div>
+            </center>
         )
     }
 }
