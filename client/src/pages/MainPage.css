@@ -49,8 +49,10 @@
     background: transparent;
     width: 5%;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 4%;
+    border-color: #b8b6b4;
     color: #b8b6b4;
+    font-size: 4%;
 }
 
 .genre-button:hover{
@@ -79,6 +81,7 @@
 .randomgame-image {
     margin: 10px;
     justify-content: center;
+    width:18%;
 }
 
 .discount-title {
