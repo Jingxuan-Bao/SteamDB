@@ -1,5 +1,6 @@
 import React from 'react';
-import "./SearchBar.css"
+import "./SearchBar.css";
+import { withRouter } from "react-router-dom";
 
 class Navigation extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Navigation extends React.Component {
 
     navtoprofile(event) {
         console.log("waiting to develop profile redirect");
+        this.props.history.push("/profile");
     }
 
     render() {
@@ -22,12 +24,12 @@ class Navigation extends React.Component {
             <div>
                 <div>
                     <nav class="searchbar-nav">
-                    <a class="nav-link steam-logo" href=""><img id="steam-logo" src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" alt=""></img></a>
-                    <a class="nav-link" >STORE</a>
-                    <a class="nav-link" >COMMUNITY</a>
-                    <a class="nav-link" >ABOUT</a>
-                    <a class="nav-link" >SUPPORT</a>
-                    <a class="nav-link" id='nav-button' onClick={this.navtoprofile}>PROFILE</a>
+                    <span class="nav-link steam-logo" href=""><img id="steam-logo" src="https://store.akamai.steamstatic.com/public/shared/images/header/logo_steam.svg?t=962016" alt=""></img></span>
+                    <span class="nav-link" >STORE</span>
+                    <span class="nav-link" >COMMUNITY</span>
+                    <span class="nav-link" >ABOUT</span>
+                    <span class="nav-link" >SUPPORT</span>
+                    <span class="nav-link" id='nav-button' onClick={this.navtoprofile}>PROFILE</span>
                     </nav>
                 </div>
                 <div>

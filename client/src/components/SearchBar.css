@@ -5,10 +5,10 @@
 }
 
 .searchbar-nav{
-    background: #171a21;
+    background: #171a21 !important;
     height: 120px;
     width: 100%;
-    border-color: #171a21;
+    border-color: #171a21 !important;
     display: flex;
     margin: 0px;
     position: relative;
