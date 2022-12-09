@@ -11,6 +11,28 @@ const getPassword = async (id) => {
     return res.json()
 }
 
+const gameSearch = async(gamename) => {
+    var res = await fetch(`http://${config.server}/mainpage/name/${gamename}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const tenrandomgame = async() => {
+    var res = await fetch(`http://${config.server}/mainpage`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
 const getGameInfo = async id => {
     var res = await fetch(`http://${config.server}/game/${id}`, {
         method: 'GET',
@@ -46,6 +68,8 @@ const getGameReview = async id => {
 
 export {
     getPassword,
+    gameSearch,
+    tenrandomgame,
     getGameInfo,
     getGameRecommended,
     getGameReview

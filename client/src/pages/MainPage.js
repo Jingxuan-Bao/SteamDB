@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../components/SearchBar';
+import "./MainPage.css";
 import { gameSearch, tenrandomgame } from '../fetcher';
-import { Button } from 'antd';
 
 class RandomGame extends React.Component {
     constructor(props) {
@@ -62,7 +62,7 @@ class MainPage extends React.Component {
                     console.log("find app id " + res.results[0].app_id);
                     console.log("find app name " + res.results[0].name);
                     this.setState({appid: res.results[0].app_id});
-                    //this.props.history.push("/game");
+                    this.props.history.push(`/game-info/${this.state.appid}`);
                 }
                 else {
                     this.setState({searchmessage: res.status});
@@ -77,7 +77,7 @@ class MainPage extends React.Component {
         return (
             <div className='main-page'>
                 <div>
-                    <Navigation />
+                    <Navigation history={this.props.history}/>
                 </div>
                 <div class="search-bar">
                     <input id="search" type="text" placeholder="search" onChange={this.handleChange}></input>
@@ -112,7 +112,6 @@ class MainPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Button type="primary" onClick={() => this.props.history.push("/game-info/10")} >Go To Game Info {'>'}</Button>
             </div>
         )
     }
