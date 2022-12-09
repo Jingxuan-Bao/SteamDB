@@ -17,7 +17,7 @@ const TopListbyGenre = ({history, genre}) => {
 
     function handleImageClick(item) {
         // Use the history object to navigate to the game page by its ID
-        history.push(`/game/${item.app_id}`);
+        history.push(`/game-info/${item.app_id}`);
     }
 
     const genreItemsList = genreItems.map(item => (
