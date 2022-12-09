@@ -2,7 +2,7 @@ import config from './config.json';
 
 const getPassword = async (id) => {
     var res = await fetch(`http://${config.server}/login/${id}/getpassword`, {
-        method: 'GET', 
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -11,9 +11,9 @@ const getPassword = async (id) => {
     return res.json()
 }
 
-const gameSearch = async(gamename) => {
-    var res = await fetch(`http://${config.server}/mainpage/name/${gamename}`, {
-        method: 'GET', 
+const getGameInfo = async id => {
+    var res = await fetch(`http://${config.server}/game/${id}`, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -22,9 +22,20 @@ const gameSearch = async(gamename) => {
     return res.json()
 }
 
-const tenrandomgame = async() => {
-    var res = await fetch(`http://${config.server}/mainpage`, {
-        method: 'GET', 
+const getGameRecommended = async id => {
+    var res = await fetch(`http://${config.server}/game/${id}/gamerecommend`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const getGameReview = async id => {
+    var res = await fetch(`http://${config.server}/game/${id}/getGameReview`, {
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -35,6 +46,7 @@ const tenrandomgame = async() => {
 
 export {
     getPassword,
-    gameSearch,
-    tenrandomgame
+    getGameInfo,
+    getGameRecommended,
+    getGameReview
 }
