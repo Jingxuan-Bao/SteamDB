@@ -3,6 +3,7 @@ import Navigation from '../components/SearchBar';
 import "./MainPage.css";
 import { gameSearch, tenrandomgame } from '../fetcher';
 import TopList from './TopList';
+import TopGenre from './TopGenre';
 
 class RandomGame extends React.Component {
     render() {
@@ -111,6 +112,9 @@ class MainPage extends React.Component {
                 </div>
                 <div class="toplist">
                     <TopList />
+                </div>
+                <div>
+                    <TopGenre genre = {this.state.sortgenre} />
                 </div>
             </div>
 

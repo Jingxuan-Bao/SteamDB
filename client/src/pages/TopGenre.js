@@ -7,6 +7,7 @@ const TopListbyGenre = ({history, genre}) => {
     // Use the useState hook to store the fetched data in state
     const [genreItems, setGenreItems] = React.useState([]);
     React.useEffect(() => {
+        console.log("check genre " + genre);
         topgamebygenre(genre).then(res => {
             if (res.status && res.status === 'success') {
                 res.results = res.results.slice(0, 10);
@@ -34,6 +35,7 @@ const TopListbyGenre = ({history, genre}) => {
         <div className="top-list">
             <div className="top-rating">
                 <h1>Top game by genre</h1>
+                <h1>{genre}</h1>
                 <ul>
                     {genreItems.map(item => (
                         genreItemsList
