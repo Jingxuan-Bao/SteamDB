@@ -2,12 +2,9 @@ import React from 'react';
 import Navigation from '../components/SearchBar';
 import "./MainPage.css";
 import { gameSearch, tenrandomgame } from '../fetcher';
+import TopList from './TopList';
 
 class RandomGame extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <img class="randomgame-image"src = {this.props.figure}></img>
@@ -112,7 +109,11 @@ class MainPage extends React.Component {
                         </div>
                     </div>
                 </div>
+                <div class="toplist">
+                    <TopList />
+                </div>
             </div>
+
         )
     }
 }
