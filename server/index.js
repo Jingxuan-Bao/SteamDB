@@ -1,9 +1,12 @@
 const express = require("express");
+const cors = require('cors');
 const app = express();
+app.use(cors());
 
 const profile = require('./routes/profile');
 const login = require('./routes/login');
 const mainpage = require('./routes/mainpage');
+const game = require('./routes/game');
 
 
 const port = process.env.PORT || 3000;
@@ -20,3 +23,4 @@ app.get("/", (req, res) => {
 profile(app);
 login(app);
 mainpage(app);
+game(app);

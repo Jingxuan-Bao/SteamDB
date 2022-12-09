@@ -1,6 +1,5 @@
 body {
-    background-color: #101111;
-    margin: 0px;
+    background-color: #101111 !important;
 }
 .auth-container {
     background-color: #1C1D1F;
@@ -8,22 +7,28 @@ body {
     padding:1.3em;
     font-family:sans-serif;
     margin-top:100px;
+    margin-left:33%;
 }
 
 .steam-img{
     width:400px;
     margin-bottom: 40px;
-    margin-left: 5%;
+    position: relative;
+    left:32%;
 }
 
 .input{
     width: 50%;
     margin-bottom: 10px;
+    position: relative;
+    left: 26%;
     border: 2px solid #FFFFFF;
 }
 
 .button {
     margin-top: 10px;
+    position: relative;
+    left:37%;
     background-color: #5D5D5D;
     border: 2px solid;
     color: #FFFFFF;
