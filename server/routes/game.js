@@ -18,7 +18,7 @@ async function getGameInfo(req, res) {
         With games AS(
             SELECT app_id, name
             FROM GAME
-            WHERE app_id = '${gameid}'),
+            WHERE app_id = '${gameid}'
         game_picture AS(
             SELECT app_id, figure, background
             FROM FIGURE
@@ -58,7 +58,6 @@ async function getGameReview(req, res) {
         SELECT R.app_name, R.review, R.language, R.recommended
         FROM REVIEW R
         WHERE R.app_id = '${gameid}'
-	limit 50
         `
     ;
         connection.query(query, function(error, results, fields) {

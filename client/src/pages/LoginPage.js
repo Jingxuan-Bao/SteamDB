@@ -4,10 +4,10 @@ import { getPassword } from '../fetcher'
 
 
 class LoginPage extends React.Component {
-
+    
     constructor(props) {
         super(props);
-
+    
         this.state = {
             username: '',
             password: '',
@@ -21,43 +21,44 @@ class LoginPage extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({ username: event.target.value });
+        this.setState({username: event.target.value});
     }
 
     setPassword(event) {
-        this.setState({ password: event.target.value });
+        this.setState({password: event.target.value});
     }
 
     postLogin() {
         console.log("username " + this.state.username);
         getPassword(this.state.username).then(res => {
-            if (res.status) {
-                if (res.status === "success") {
-                    if (this.state.password) {
+            if(res.status) {
+                if(res.status === "success") {
+                    if(this.state.password) {
                         localStorage.setItem("userid", this.state.username);
                         this.props.history.push("/main");
                         return;
                     }
                 }
             }
-            this.setState({ message: 'error' });
+            this.setState({message: 'error'});
         })
     }
 
     render() {
         return (
+            <center>
             <div class="auth-container">
                 <div class="auth-card">
-                    <img class="steam-img" src="https://steamstore-a.akamaihd.net/public/shared/images/header/globalheader_logo.png" />
+                    <img class="steam-img" src="https://steamstore-a.akamaihd.net/public/shared/images/header/globalheader_logo.png"/>
                     <input className='input' placeholder='userid' onChange={this.handleChange}></input>
-                    <br />
                     <input className='input' placeholder='passowrd' type='password' onChange={this.setPassword}></input>
                     <div>
-                        <button className='button' onClick={this.postLogin}>Login</button>
+                    <button className='button' onClick={this.postLogin}>Login</button>
                     </div>
                     <p className='alert-message'>{this.state.message}</p>
                 </div>
-            </div >
+            </div>
+            </center>
         )
     }
 }
