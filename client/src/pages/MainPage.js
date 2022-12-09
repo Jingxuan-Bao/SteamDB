@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../components/SearchBar';
-import "./MainPage.css";
 import { gameSearch, tenrandomgame } from '../fetcher';
+import { Button } from 'antd';
 
 class RandomGame extends React.Component {
     constructor(props) {
@@ -112,6 +112,7 @@ class MainPage extends React.Component {
                         </div>
                     </div>
                 </div>
+                <Button type="primary" onClick={() => this.props.history.push("/game-info/10")} >Go To Game Info {'>'}</Button>
             </div>
         )
     }
