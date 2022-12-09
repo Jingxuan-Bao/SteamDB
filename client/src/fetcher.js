@@ -33,6 +33,40 @@ const tenrandomgame = async() => {
     return res.json()
 }
 
+const topratinggame = async() => {
+    var res = await fetch(`http://${config.server}/mainpage/pos_rating/12345`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const topreviewgame = async() => {
+    var res = await fetch(`http://${config.server}/mainpage/review_count`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const topgamebygenre = async(genre) => {
+    var res = await fetch(`http://${config.server}/mainpage/gsort/${genre}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+
 const getGameInfo = async id => {
     var res = await fetch(`http://${config.server}/game/${id}`, {
         method: 'GET',
@@ -70,6 +104,9 @@ export {
     getPassword,
     gameSearch,
     tenrandomgame,
+    topratinggame,
+    topreviewgame,
+    topgamebygenre,
     getGameInfo,
     getGameRecommended,
     getGameReview
