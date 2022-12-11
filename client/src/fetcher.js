@@ -100,6 +100,41 @@ const getGameReview = async id => {
     return res.json()
 }
 
+const getowngame = async id => {
+    var res = await fetch(`http://${config.server}/profile/${id}/owngame`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const userrecommend = async id => {
+    var res = await fetch(`http://${config.server}/profile/${id}/userrecommend`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+const gamerecommend = async id => {
+    var res = await fetch(`http://${config.server}/profile/${id}/gamerecommend`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors'
+    })
+    return res.json()
+}
+
+
+
 export {
     getPassword,
     gameSearch,
@@ -109,5 +144,8 @@ export {
     topgamebygenre,
     getGameInfo,
     getGameRecommended,
-    getGameReview
+    getGameReview,
+    getowngame,
+    userrecommend,
+    gamerecommend
 }
