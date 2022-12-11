@@ -57,10 +57,10 @@ const ProfilePage = (props) => {
         <div class="bottom" >
                 <div class="content">
                     <div class="left">
-                        <div class="like-left-one">Game Recommend</div>
+                        <div class="like-left-one">Game Owned</div>
                         <div class="carousel">
                             <Carousel autoplay>
-                                {recommends.map(item => <div key={item.app_id}><div
+                                {owngame.map(item => <div key={item.app_id}><div
                                     class="figure"
                                     style={{
                                         backgroundImage: `url(${item.figure})` ?? undefined,
@@ -70,10 +70,10 @@ const ProfilePage = (props) => {
                                 /></div>)}
                             </Carousel>
                             </div>
-                        <div class="like-left-one">Game Owned</div>
+                        <div class="like-left-one">Game Recommend</div>
                         <div class="carousel">
                             <Carousel autoplay>
-                                {owngame.map(item => <div key={item.app_id}><div
+                                {recommends.map(item => <div key={item.app_id}><div
                                     class="figure"
                                     style={{
                                         backgroundImage: `url(${item.figure})` ?? undefined,
