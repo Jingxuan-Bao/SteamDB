@@ -1,0 +1,109 @@
+.game-container {
+    position:absolute;
+    left: 0;
+    right: 0px;
+    bottom: 0;
+    top: 0;
+}
+
+.bread-crumb{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    line-height: 50px;
+    padding-left: 30px;
+} 
+
+.bottom{
+    position:absolute;
+    left: 0;
+    right: 0px;
+    bottom: 0;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex;
+    min-height: 1000px;
+
+}
+
+.content-father{
+    width: 900px;
+}
+
+.content{
+    background:rgba(0,0,0,0);
+    display: flex;
+    justify-content: space-between;
+}
+
+.can-click-bread-crumb{
+    cursor:pointer;
+    color:rgb(86,152,218);
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+}
+
+.table{
+    display: flex;
+    width: 500px;
+    margin: 0px 32px 24px 0px;
+    color: white;
+    background-color: rgb(48,61,69);
+}
+
+.table-left{
+    flex:2;
+}
+
+.table-right{
+    flex:3;
+}
+
+.table-item{
+    
+    padding: 12px;
+    border: 1px solid rgb(57,74,89);
+}
+
+.desc{
+    width: 500px;
+    color: white;
+}
+
+.figure{
+    height: 172px;
+    width: 600px;
+    background-size:  auto 100%;
+}
+
+.like-left-one{
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.userfont{
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.like-left-two{
+    font-size: 14px;
+    color: white;
+}
+
+.carousel{
+    height: 172px;
+    width: 368px;
+}
+
+.user{
+    max-height: 300px;
+    overflow: auto;
+}
+

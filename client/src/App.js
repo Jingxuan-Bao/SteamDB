@@ -8,6 +8,7 @@ import {
 import LoginPage from './pages/LoginPage'
 import MainPage from './pages/MainPage'
 import GameInfoPage from './pages/GameInfoPage'
+import ProfilePage from './pages/ProfilePage'
 
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
                         <Route exact path="/" component={LoginPage} />
                         <Route exact path="/main" component={MainPage} />
                         <Route exact path="/game-info/:id" component={GameInfoPage} />
+                        <Route exact path="/profile/:id" component={ProfilePage} />
                     </Switch>
                 </Router>
             </div>
