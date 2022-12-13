@@ -83,7 +83,7 @@ const GameInfoPage = (props) => {
                         <div class="desc">{currentGameInfo.short_description ?? ''}</div>
                     </div>
                     <div class="right">
-                        <div class="figure" style={{ backgroundImage: `url(${currentGameInfo.figure})` ?? undefined }} />
+                        <div class="figure" style={{backgroundImage: `url(${currentGameInfo.figure})` ?? undefined}} />
                         <div class="like">
                             <div class="like-left-one">DO YOU LIKE IT?</div>
                             <div class="like-left-two">ADDING THIS GAME TO THE WISHLIST</div>

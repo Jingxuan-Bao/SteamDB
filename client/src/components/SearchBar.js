@@ -7,7 +7,7 @@ class Navigation extends React.Component {
         super(props);
     
         this.state = {
-            
+            userid: localStorage.getItem("userid")
         };
 
         this.navtoprofile = this.navtoprofile.bind(this);
@@ -16,7 +16,7 @@ class Navigation extends React.Component {
 
     navtoprofile(event) {
         console.log("waiting to develop profile redirect");
-        this.props.history.push("/profile");
+        this.props.history.push(`/profile/${this.state.userid}`);
     }
 
     render() {
