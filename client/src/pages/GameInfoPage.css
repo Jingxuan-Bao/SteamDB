@@ -79,7 +79,7 @@
 
 .figure{
     height: 172px;
-    width: 368px;
+    width: 368px !important;
     background-size:  auto 100%;
 }
 
