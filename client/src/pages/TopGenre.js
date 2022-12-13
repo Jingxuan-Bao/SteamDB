@@ -12,9 +12,10 @@ const TopListbyGenre = ({history, genre}) => {
             if (res.status && res.status === 'success') {
                 res.results = res.results.slice(0, 10);
                 setGenreItems(res.results);
+                console.log("check genre " + genre);
             }
         });
-    }, []);
+    }, [genre]);
 
     function handleImageClick(item) {
         // Use the history object to navigate to the game page by its ID
