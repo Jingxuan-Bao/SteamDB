@@ -56,17 +56,13 @@ const TopList = ({history}) => {
       <div className="top-rating">
         <h1>Top Rating Game</h1>
         <ul>
-          {ratingItems.map(item => (
-            ratingItemsList
-          ))}
+          {ratingItemsList}
         </ul>
       </div>
       <div className="top-review">
         <h1>Top Review Count Game</h1>
         <ul>
-          {reviewCountItems.map(item => (
-            reviewCountItemsList
-          ))}
+          {reviewCountItemsList}
         </ul>
       </div>
     </div>

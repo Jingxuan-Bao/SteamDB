@@ -38,9 +38,7 @@ const TopListbyGenre = ({history, genre}) => {
                 <h1>Top game by genre</h1>
                 <h1>{genre}</h1>
                 <ul>
-                    {genreItems.map(item => (
-                        genreItemsList
-                    ))}
+                    {genreItemsList}
                 </ul>
             </div>
         </div>
