@@ -2,7 +2,7 @@
 
 Welcome to STEAMDB
 
-You could visit the website through : https://steam-database.surge.sh/
+You could visit the website through ➡️ https://steam-database.surge.sh/
 
 Sample userid:76561198862207160
 Sample password:123
