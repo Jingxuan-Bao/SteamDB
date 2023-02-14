@@ -10,23 +10,15 @@ Sample password:123
 Website Overview:
 
 Login Page:
-<div>
-<img src="/image/loginpage.png">
-</div>
+![Image text](https://github.com/Jingxuan-Bao/SteamDB/blob/dae4ec3ddf821d3e6b7027f4f6defe54c09b1910/image/loginpage.png)
 
 Main Page:
-<div>
-<img src="/image/mainpage.png">
-</div>
+![Image text](https://github.com/Jingxuan-Bao/SteamDB/blob/dae4ec3ddf821d3e6b7027f4f6defe54c09b1910/image/mainpage.png)
 
 Game Page:
-<div>
-<img src="/image/gamepage.png">
-</div>
+![Image text](https://github.com/Jingxuan-Bao/SteamDB/blob/dae4ec3ddf821d3e6b7027f4f6defe54c09b1910/image/gamepage.png)
 
 Profile Page:
-<div>
-<img src="/image/profilepage.png">
-</div>
+![Image text](https://github.com/Jingxuan-Bao/SteamDB/blob/dae4ec3ddf821d3e6b7027f4f6defe54c09b1910/image/profilepage.png)
 
 
